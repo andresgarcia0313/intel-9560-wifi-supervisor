@@ -1,0 +1,21 @@
+# /etc/controlador-radio/config.toml - se lee al arrancar el demonio (systemctl restart controlador-radio).
+# Toda clave es opcional; lo que falte o este mal escrito usa el valor por defecto de config.py.
+
+# "actuar" repara; "observar" solo diagnostica y registra (para estrenar cambios sin riesgo).
+modo = "actuar"
+iface = "wlp0s20f3"
+conexion = "wifi-casa"
+puerta = "192.168.1.254"
+internet = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]
+intervalo = 15.0
+confirmar = 2
+max_resets_hora = 4
+espera_ap = 60.0
+espera_router = 600.0
+celular = "wifi-celular"
+bt_celular = "bt-celular"
+espera_celular = 180.0
+volver_casa = 120.0
+soltar_bt = 300.0
+bt_vigilancia_h = 24.0
+bt_max_crashes = 1

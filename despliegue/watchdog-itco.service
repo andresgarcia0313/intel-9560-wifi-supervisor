@@ -1,0 +1,17 @@
+# /etc/systemd/system/watchdog-itco.service - Carga el watchdog de hardware Intel (iTCO) al arrancar.
+# Ubuntu lo tiene en su lista negra y systemd-modules-load la respeta ("deny-listed by kmod"), asi que
+# /etc/modules-load.d no basta: modprobe con el nombre explicito si lo carga. systemd (PID 1) abre
+# /dev/watchdog en su siguiente latido y desde ahi, si el equipo se congela, el hardware lo reinicia.
+[Unit]
+Description=Watchdog de hardware Intel iTCO (reinicio automatico si el equipo se congela)
+DefaultDependencies=no
+After=systemd-modules-load.service
+Before=sysinit.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/modprobe iTCO_wdt
+
+[Install]
+WantedBy=sysinit.target
